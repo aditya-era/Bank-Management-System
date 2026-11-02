@@ -1,0 +1,34 @@
+{% extends "base.html" %}{% from "_m.html" import icon with context %}
+{% block bodyclass %}home{% endblock %}
+{% block content %}
+<section class="hero">
+<div><h1>Your Trusted<br>Digital <span>Bank</span></h1><div class="bar"></div>
+<p>Open an account, manage your money, transfer funds and more — all in one secure place.</p></div>
+<div class="cards">
+<a class="card glass" href="{{ url_for('dashboard' if current_user else 'register') }}">{{ icon('user') }}<h3>Register</h3><p>Create your account and join UniBank today.</p><span class="go">{{ icon('arrow') }}</span></a>
+<a class="card glass" href="{{ url_for('dashboard' if current_user else 'login') }}">{{ icon('login') }}<h3>Login</h3><p>Access your account securely and manage your banking anytime.</p><span class="go">{{ icon('arrow') }}</span></a>
+<a class="card glass" href="#services">{{ icon('layers') }}<h3>Banking Services</h3><p>Explore our secure and convenient banking services.</p><span class="go">{{ icon('arrow') }}</span></a>
+</div></section>
+
+<section class="panel" id="services"><div class="pbox glass"><a class="x" href="#" aria-label="Close">&times;</a>
+<h2>Banking <span class="hl">Services</span></h2><p class="mu">Everything you need to bank with confidence.</p>
+<div class="g3">
+<div class="glass">{{ icon('wallet') }}<h2>Savings &amp; Current</h2><p class="mu">Open an account in minutes with an optional opening deposit.</p></div>
+<div class="glass">{{ icon('swap') }}<h2>Instant Transfers</h2><p class="mu">Send money to any UniBank account number, safely and instantly.</p></div>
+<div class="glass">{{ icon('list') }}<h2>Full History</h2><p class="mu">Track every deposit, withdrawal and transfer with reference IDs.</p></div>
+</div></div></section>
+
+<section class="panel" id="about"><div class="pbox glass"><a class="x" href="#" aria-label="Close">&times;</a>
+<h2>About <span class="hl">UniBank</span></h2><p class="mu">UniBank is a simple, modern banking experience: clear screens, honest numbers and nothing you do not need. Open an account, deposit, withdraw and transfer, all from one place.</p></div></section>
+
+<section class="panel" id="security"><div class="pbox glass"><a class="x" href="#" aria-label="Close">&times;</a>
+<h2>Built for <span class="hl">Security</span></h2><p class="mu">Your money and data are protected at every step.</p>
+<div class="g3">
+<div class="glass">{{ icon('shield') }}<h2>Protected Forms</h2><p class="mu">CSRF checks on every action and hashed passwords.</p></div>
+<div class="glass">{{ icon('key') }}<h2>Login Safeguards</h2><p class="mu">Repeated failed attempts are temporarily blocked.</p></div>
+<div class="glass">{{ icon('bolt') }}<h2>Atomic Payments</h2><p class="mu">A transaction either fully completes or no money moves.</p></div>
+</div></div></section>
+
+<section class="panel" id="contact"><div class="pbox glass"><a class="x" href="#" aria-label="Close">&times;</a>
+<h2>Contact <span class="hl">Us</span></h2><p class="mu">Need help? Reach the UniBank support desk any time.</p></div></section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% from "_m.html" import field, csrf, general with context %}
+{% block title %}Register{% endblock %}
+{% block content %}<div class="auth wide glass"><h1>Create your <span class="hl">account</span></h1><p class="mu">Join UniBank in a minute.</p>
+<form method="post" class="fg" novalidate>{{ csrf() }}{{ general(errors) }}
+{{ field('full_name','Full name','text',form,errors,'As per your ID','name') }}
+<div class="row2">{{ field('username','Username','text',form,errors,'letters, numbers, _','username') }}{{ field('mobile','Mobile','tel',form,errors,'10-digit number','tel') }}</div>
+{{ field('email','Email','email',form,errors,'you@example.com','email') }}
+<div class="row2">{{ field('password','Password','password',form,errors,'','new-password') }}{{ field('confirm_password','Confirm password','password',form,errors,'','new-password') }}</div>
+<button class="btn solid full" type="submit">Register</button></form>
+<div class="alt"><span>Already registered? <a href="{{ url_for('login') }}">Login</a></span></div></div>{% endblock %}

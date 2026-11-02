@@ -1,0 +1,6 @@
+bank.db
+.secret_key
+__pycache__/
+*.pyc
+venv/
+.venv/

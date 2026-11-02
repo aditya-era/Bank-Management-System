@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}{% set u = current_user %}<h1>Your <span class="hl">profile</span></h1><br>
+<div class="glass kv">
+<div><small>Full name</small>{{ u['full_name'] or '-' }}</div><div><small>Username</small>{{ u['username'] }}</div>
+<div><small>Email</small>{{ u['email'] or '-' }}</div><div><small>Mobile</small>{{ u['mobile'] or '-' }}</div>
+<div><small>Account number</small>{{ u['account_number']|acct }}</div><div><small>Account type</small>{{ u['account_type'] or '-' }}</div>
+<div><small>Date of birth</small>{{ u['dob'] or '-' }}</div><div><small>Address</small>{{ u['address'] or '-' }}</div>
+<div><small>Member since</small>{{ (u['created_at']|when) if u['created_at'] else '-' }}</div>
+</div><p><br><a class="btn ghost" href="{{ url_for('change_password') }}">Change password</a></p>{% endblock %}

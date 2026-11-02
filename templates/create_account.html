@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% from "_m.html" import field, csrf, general with context %}
+{% block title %}Open account{% endblock %}
+{% block content %}<div class="auth wide glass"><h1>Open your bank <span class="hl">account</span></h1><p class="mu">Takes less than a minute.</p>
+<form method="post" class="fg" novalidate>{{ csrf() }}{{ general(errors) }}
+<div class="row2"><div class="{{ 'bad' if errors.get('account_type') }}"><label for="account_type">Account type</label><select id="account_type" name="account_type"><option value="">Select</option>{% for t in ['Savings','Current'] %}<option {{ 'selected' if form.get('account_type')==t }}>{{ t }}</option>{% endfor %}</select>{% if errors.get('account_type') %}<div class="err">{{ errors['account_type'] }}</div>{% endif %}</div>
+{{ field('dob','Date of birth','date',form,errors) }}</div>
+{{ field('address','Address','textarea',form,errors,'House, street, city, PIN') }}
+{{ field('opening_deposit','Opening deposit (optional)','text',form,errors,'₹ 0.00') }}
+<button class="btn solid full" type="submit">Create account</button></form></div>{% endblock %}

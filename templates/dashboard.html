@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% from "_m.html" import icon with context %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="hello"><div><h1>Hello, <span class="hl">{{ current_user['full_name'] or current_user['username'] }}</span></h1>
+<p class="mu">{% if current_user['account_number'] %}Account {{ current_user['account_number']|acct }} · {{ current_user['account_type'] }}{% else %}You have not opened a bank account yet.{% endif %}</p></div></div>
+{% if current_user['account_number'] %}
+<div class="glass bal"><span class="mu">Available balance</span><div class="amt">{{ current_user['balance']|inr }}</div><span class="chip">Active</span></div>
+<div class="tiles">
+<a class="tile glass" href="{{ url_for('deposit') }}">{{ icon('in') }}<b>Deposit</b><span class="mu">Add money</span></a>
+<a class="tile glass" href="{{ url_for('withdraw') }}">{{ icon('out') }}<b>Withdraw</b><span class="mu">Take money out</span></a>
+<a class="tile glass" href="{{ url_for('transfer') }}">{{ icon('swap') }}<b>Transfer</b><span class="mu">Send to an account</span></a>
+<a class="tile glass" href="{{ url_for('balance') }}">{{ icon('wallet') }}<b>Balance</b><span class="mu">Account overview</span></a>
+<a class="tile glass" href="{{ url_for('history') }}">{{ icon('list') }}<b>History</b><span class="mu">All transactions</span></a>
+<a class="tile glass" href="{{ url_for('profile') }}">{{ icon('me') }}<b>Profile</b><span class="mu">Your details</span></a>
+<a class="tile glass" href="{{ url_for('change_password') }}">{{ icon('key') }}<b>Password</b><span class="mu">Change it</span></a>
+</div>
+{% else %}<div class="glass bal"><h2>Open your UniBank account</h2><p class="mu">Choose Savings or Current to start banking.</p><br><a class="btn solid" href="{{ url_for('create_account') }}">Open account {{ icon('arrow') }}</a></div>
+<div class="tiles"><a class="tile glass" href="{{ url_for('profile') }}">{{ icon('me') }}<b>Profile</b></a><a class="tile glass" href="{{ url_for('change_password') }}">{{ icon('key') }}<b>Password</b></a></div>{% endif %}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% from "_txn.html" import rows as txn_rows %}
+{% block title %}History{% endblock %}
+{% block content %}<h1>Transaction <span class="hl">history</span></h1><p class="mu">Your latest 200 transactions.</p><br>
+<div class="glass tw"><table><thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Account</th><th>Balance</th><th>Status</th><th>Reference</th></tr></thead><tbody>{{ txn_rows(rows, true) }}</tbody></table>
+{% if not rows %}<div class="empty">No transactions yet.</div>{% endif %}</div>{% endblock %}

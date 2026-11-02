@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% from "_m.html" import field, csrf, general with context %}
+{% block title %}Transfer{% endblock %}
+{% block content %}<div class="auth glass"><h1>Transfer <span class="hl">funds</span></h1><p class="mu">Send money to another UniBank account.</p>
+<form method="post" class="fg" novalidate>{{ csrf() }}{{ general(errors) }}
+{{ field('to_account','Recipient account number','text',form,errors,'12-digit account number') }}
+{{ field('amount','Amount (₹)','text',form,errors,'0.00') }}
+<button class="btn solid full" type="submit">Send money</button></form></div>{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Database{% endblock %}
+{% block content %}
+<h1>Database <span class="hl">view</span></h1><p class="mu">Visible only on this computer. Passwords are never shown.</p><br>
+<h2>Users ({{ users|length }})</h2>
+<div class="glass tw"><table><thead><tr><th>ID</th><th>Username</th><th>Name</th><th>Email</th><th>Mobile</th><th>Account no.</th><th>Type</th><th>Balance</th><th>Created</th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u['id'] }}</td><td>{{ u['username'] }}</td><td>{{ u['full_name'] or '-' }}</td><td>{{ u['email'] or '-' }}</td><td>{{ u['mobile'] or '-' }}</td><td>{{ (u['account_number']|acct) if u['account_number'] else '-' }}</td><td>{{ u['account_type'] or '-' }}</td><td>{{ u['balance']|inr }}</td><td class="mu">{{ (u['created_at']|when) if u['created_at'] else '-' }}</td></tr>{% endfor %}
+</tbody></table>{% if not users %}<div class="empty">No users yet.</div>{% endif %}</div>
+<br><h2>Latest transactions ({{ txns|length }})</h2>
+<div class="glass tw"><table><thead><tr><th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Date</th><th>Status</th><th>Reference</th><th>Balance after</th></tr></thead><tbody>
+{% for t in txns %}<tr><td>{{ t['id'] }}</td><td>{{ t['username'] or '-' }}</td><td>{{ t['type'] }}</td><td>{{ t['amount']|inr }}</td><td class="mu">{{ t['date']|when }}</td><td>{{ t['status'] or '-' }}</td><td class="mu">{{ t['txn_ref'] or '-' }}</td><td>{{ (t['balance_after']|inr) if t['balance_after'] is not none else '-' }}</td></tr>{% endfor %}
+</tbody></table>{% if not txns %}<div class="empty">No transactions yet.</div>{% endif %}</div>
+{% endblock %}

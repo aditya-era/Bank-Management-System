@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% from "_m.html" import icon, csrf with context %}
+{% block title %}Deposit{% endblock %}
+{% block content %}<div class="auth glass"><h1>{{ icon('in') }} Deposit <span class="hl">money</span></h1><p class="mu">Add money to your account.</p>
+<form method="post" class="fg" novalidate>{{ csrf() }}{% if error %}<div class="msg error">{{ error }}</div>{% endif %}
+<div><label for="amount">Amount (₹)</label><input id="amount" name="amount" inputmode="decimal" placeholder="0.00" value="{{ value }}"></div>
+<button class="btn solid full" type="submit">Deposit</button></form></div>{% endblock %}

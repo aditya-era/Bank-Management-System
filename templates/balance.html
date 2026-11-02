@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% from "_m.html" import icon with context %}{% from "_txn.html" import rows as txn_rows %}
+{% block title %}Balance{% endblock %}
+{% block content %}
+<div class="glass bal"><span class="mu">Available balance</span><div class="amt">{{ current_user['balance']|inr }}</div>
+<span class="mu">{{ current_user['account_type'] }} · {{ current_user['account_number']|acct }}</span></div>
+<div class="tiles"><a class="tile glass" href="{{ url_for('deposit') }}">{{ icon('in') }}<b>Deposit</b></a><a class="tile glass" href="{{ url_for('withdraw') }}">{{ icon('out') }}<b>Withdraw</b></a><a class="tile glass" href="{{ url_for('transfer') }}">{{ icon('swap') }}<b>Transfer</b></a></div>
+<br><h2>Recent transactions</h2>
+<div class="glass tw"><table><thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Account</th><th>Status</th><th>Reference</th></tr></thead><tbody>{{ txn_rows(recent) }}</tbody></table>
+{% if not recent %}<div class="empty">No transactions yet.</div>{% endif %}</div>
+<p><br><a class="btn ghost" href="{{ url_for('history') }}">View all {{ icon('arrow') }}</a></p>{% endblock %}
